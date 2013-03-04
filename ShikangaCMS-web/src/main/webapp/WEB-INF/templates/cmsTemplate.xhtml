@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>                
+                <title><ui:insert name="title">Default Title</ui:insert></title>
+                 <h:outputStylesheet library="css" name="pfcrud.css"/>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" >                     
+                     <ui:include src="header.xhtml"/>
+                </p:layoutUnit>
+                
+               
+
+                <p:layoutUnit position="south" size="150" closable="true" collapsible="true">
+                    <ui:insert name="footer">Footer</ui:insert>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="10%" header="Left" collapsible="true">
+                         <ui:insert name="left">Left</ui:insert>                    
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <ui:insert name="content">Content</ui:insert>                  
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

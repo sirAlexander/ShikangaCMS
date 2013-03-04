@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="appEditDlg" widgetVar="appEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditAppTitle}">
+
+            <h:form id="appEditForm">
+
+                <h:panelGroup id="appEditMessagePanel">
+                    <p:messages id="appEditMessages"/>
+                </h:panelGroup>
+
+                <h:panelGroup id="appEditDisplay">
+                    <p:panelGrid  columns="2" rendered="#{appController.selected != null}">
+
+                        <p:outputLabel value="#{bundle.EditAppLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{appController.selected.id}" />
+
+                        <p:outputLabel value="#{bundle.EditAppLabel_reference}" for="reference" />
+                        <p:inputText id="reference" value="#{appController.selected.reference}" title="#{bundle.EditAppTitle_reference}" />
+
+                        <p:outputLabel value="#{bundle.EditAppLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{appController.selected.name}" title="#{bundle.EditAppTitle_name}" />
+
+                        <p:outputLabel value="#{bundle.EditAppLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{appController.selected.description}" title="#{bundle.EditAppTitle_description}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{appController.save}" value="#{bundle.Save}" update="appEditDisplay,appEditMessagePanel,:appListForm:appDatalist" oncomplete="if(!args.validationFailed) {appEditDialog.hide();}"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="appEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

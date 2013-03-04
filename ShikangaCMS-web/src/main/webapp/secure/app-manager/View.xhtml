@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="appViewDlg" widgetVar="appViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewAppTitle}">
+
+            <h:form id="appViewForm">
+
+                <h:panelGroup id="appViewDisplay">
+                    <p:panelGrid columns="2" rendered="#{appController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewAppLabel_id}"/>
+                        <h:outputText value="#{appController.selected.id}" title="#{bundle.ViewAppTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewAppLabel_reference}"/>
+                        <h:outputText value="#{appController.selected.reference}" title="#{bundle.ViewAppTitle_reference}"/>
+
+                        <h:outputText value="#{bundle.ViewAppLabel_name}"/>
+                        <h:outputText value="#{appController.selected.name}" title="#{bundle.ViewAppTitle_name}"/>
+
+                        <h:outputText value="#{bundle.ViewAppLabel_description}"/>
+                        <h:outputText value="#{appController.selected.description}" title="#{bundle.ViewAppTitle_description}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="appViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

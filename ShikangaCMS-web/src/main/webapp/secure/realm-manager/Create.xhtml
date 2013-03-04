@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="realmCreateDlg" widgetVar="realmCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateRealmTitle}">
+
+            <h:form id="realmCreateForm">
+
+                <h:panelGroup id="realmCreateMessagePanel">
+                    <p:messages/>
+                </h:panelGroup>
+
+                <h:panelGroup id="realmCreateDisplay">
+                    <p:panelGrid columns="2" rendered="#{realmController.selected != null}">
+
+                        <p:outputLabel value="#{bundle.CreateRealmLabel_reference}" for="reference" />
+                        <p:inputText id="reference" value="#{realmController.selected.reference}" title="#{bundle.CreateRealmTitle_reference}" />
+
+                        <p:outputLabel value="#{bundle.CreateRealmLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{realmController.selected.name}" title="#{bundle.CreateRealmTitle_name}" />
+
+                        <p:outputLabel value="#{bundle.CreateRealmLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{realmController.selected.description}" title="#{bundle.CreateRealmTitle_description}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{realmController.saveNew}" value="#{bundle.Save}" update="realmCreateDisplay,realmCreateMessagePanel,:realmListForm:realmDatalist" oncomplete="if(!args.validationFailed){realmCreateDialog.hide();}"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="realmCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

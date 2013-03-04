@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="viewDlg" widgetVar="viewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewSystemUserTitle}">
+
+            <h:form id="viewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{systemUserController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewSystemUserLabel_name}"/>
+                        <h:outputText value="#{systemUserController.selected.name}" title="#{bundle.ViewSystemUserTitle_name}"/>
+
+                        <h:outputText value="#{bundle.ViewSystemUserLabel_address}"/>
+                        <h:outputText value="#{systemUserController.selected.address}" title="#{bundle.ViewSystemUserTitle_address}"/>
+
+                        <h:outputText value="#{bundle.ViewSystemUserLabel_properties}"/>
+                        <h:outputText value="#{systemUserController.selected.properties}" title="#{bundle.ViewSystemUserTitle_properties}"/>
+
+                        <h:outputText value="#{bundle.ViewSystemUserLabel_id}"/>
+                        <h:outputText value="#{systemUserController.selected.id}" title="#{bundle.ViewSystemUserTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewSystemUserLabel_version}"/>
+                        <h:outputText value="#{systemUserController.selected.version}" title="#{bundle.ViewSystemUserTitle_version}"/>
+
+                        <h:outputText value="#{bundle.ViewSystemUserLabel_dateCreated}"/>
+                        <h:outputText value="#{systemUserController.selected.dateCreated}" title="#{bundle.ViewSystemUserTitle_dateCreated}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewSystemUserLabel_lastModified}"/>
+                        <h:outputText value="#{systemUserController.selected.lastModified}" title="#{bundle.ViewSystemUserTitle_lastModified}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="viewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

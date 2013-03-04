@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">                            
+                <title> <h:outputText value="#{bundle.AppName}"></h:outputText></title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+ 
+            <p:panel header="#{bundle.AppName}"  >
+                
+                <p:spacer height="50" />               
+              
+                <h:form>
+                    
+                    <h:panelGroup id="loginMessagePanel" layout="block">                   
+                        <p:messages/>                    
+                    </h:panelGroup>
+                    
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">  
+                            <h:outputText value="#{bundle.Login}"></h:outputText>  
+                        </f:facet>
+                        
+                        <p:outputLabel value="#{bundle.CreateAdminLoginLabel_username}" for="username" />
+                        <p:inputText id="username" value="#{authenticationController.username}" title="#{bundle.CreateAdminLoginTitle_username}" 
+                                     required="true" requiredMessage="need a valid username" autocomplete="off" />
+                        <p:outputLabel value="#{bundle.CreateAdminLoginLabel_password}" for="password" />
+                        <p:password id="password" value="#{authenticationController.password}" title="#{bundle.CreateAdminLoginTitle_password}"
+                                    required="true" requiredMessage="need a valid password" autocomplete="off"/>
+                        <p:outputLabel value="#{bundle.CreateAdminLoginLabel_language}" for="language" />
+                        <p:selectOneMenu id="language" value="a">  
+                            <f:selectItem itemLabel="Default" itemValue="D" />  
+                            <f:selectItem itemLabel="English(United Kingdom)" itemValue="1" />                           
+                        </p:selectOneMenu> 
+                        
+                        <f:facet name="footer"> 
+                            <p:commandButton id="adminLoginButton" action="#{authenticationController.logIn}" update="loginMessagePanel" value="#{bundle.Login}" icon="ui-icon-check" style="margin:0"/>        
+                        </f:facet> 
+                          
+                    </p:panelGrid> 
+                   
+                    
+                </h:form>
+
+            </p:panel>
+            
+           
+
+        </h:body>
+
+    </f:view>
+</html>
+

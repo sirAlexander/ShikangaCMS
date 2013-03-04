@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="createDlg" widgetVar="createDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateSystemUserTitle}">
+
+            <h:form id="createForm">
+
+                <h:panelGroup id="messagePanel">
+                    <p:messages/>
+                </h:panelGroup>
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{systemUserController.selected != null}">
+
+                        <p:outputLabel value="#{bundle.CreateSystemUserLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{systemUserController.selected.name}" title="#{bundle.CreateSystemUserTitle_name}" />
+
+                        <p:outputLabel value="#{bundle.CreateSystemUserLabel_address}" for="address" />
+                        <p:inputText id="address" value="#{systemUserController.selected.address}" title="#{bundle.CreateSystemUserTitle_address}" />
+
+                        <p:outputLabel value="#{bundle.CreateSystemUserLabel_properties}" for="properties" />
+                        <p:inputText id="properties" value="#{systemUserController.selected.properties}" title="#{bundle.CreateSystemUserTitle_properties}" />
+
+                        <p:outputLabel value="#{bundle.CreateSystemUserLabel_version}" for="version" />
+                        <p:inputText id="version" value="#{systemUserController.selected.version}" title="#{bundle.CreateSystemUserTitle_version}" />
+
+                        <p:outputLabel value="#{bundle.CreateSystemUserLabel_dateCreated}" for="dateCreated" />
+                        <p:calendar id="dateCreated" pattern="MM/dd/yyyy HH:mm:ss" value="#{systemUserController.selected.dateCreated}" title="#{bundle.EditSystemUserTitle_dateCreated}"  showOn="button"/>
+
+                        <p:outputLabel value="#{bundle.CreateSystemUserLabel_lastModified}" for="lastModified" />
+                        <p:calendar id="lastModified" pattern="MM/dd/yyyy HH:mm:ss" value="#{systemUserController.selected.lastModified}" title="#{bundle.EditSystemUserTitle_lastModified}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{systemUserController.saveNew}" value="#{bundle.Save}" update="display,messagePanel,:listForm:datalist" oncomplete="if(!args.validationFailed){createDialog.hide();}"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="createDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

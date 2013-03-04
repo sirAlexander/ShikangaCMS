@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="listForm">
+
+        <p:spacer height="50" />
+        <p:panel>
+             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{realmController.prepareCreate}" update=":createForm:display" oncomplete="createDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":viewForm:display" oncomplete="viewDialog.show()" disabled="#{empty realmController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":editForm:display" oncomplete="editDialog.show()" disabled="#{empty realmController.selected}"/>
+            
+            
+        </p:panel> 
+        <p:spacer height="50" />
+        
+            <p:dataTable id="datalist" value="#{realmController.items}" var="item"
+                         selectionMode="single" selection="#{realmController.selected}"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="10" 
+                         rowsPerPageTemplate="10,20,30">
+
+                <p:ajax event="rowSelect" update=":listForm:viewButton :listForm:editButton"/>  
+                <p:ajax event="rowUnselect" update=":listForm:viewButton :listForm:editButton"/>  
+
+                <p:column sortBy="#{item.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListRealmTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+                <p:column sortBy="#{item.reference}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListRealmTitle_reference}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.reference}"/>
+                </p:column>
+                <p:column sortBy="#{item.name}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListRealmTitle_name}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.name}"/>
+                </p:column>
+                <p:column sortBy="#{item.description}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListRealmTitle_description}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.description}"/>
+                </p:column>
+               
+
+            </p:dataTable>
+
+       
+
+    </h:form>
+
+</ui:composition>

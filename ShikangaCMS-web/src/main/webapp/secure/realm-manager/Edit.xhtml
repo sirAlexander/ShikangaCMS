@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="realmEditDlg" widgetVar="realmEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditRealmTitle}">
+
+            <h:form id="realmEditForm">
+
+                <h:panelGroup id="realmEditMessagePanel">
+                    <p:messages id="realmEditMessages"/>
+                </h:panelGroup>
+
+                <h:panelGroup id="realmEditDisplay">
+                    <p:panelGrid  columns="2" rendered="#{realmController.selected != null}">
+
+                        <p:outputLabel value="#{bundle.EditRealmLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{realmController.selected.id}" />
+
+                        <p:outputLabel value="#{bundle.EditRealmLabel_reference}" for="reference" />
+                        <p:inputText id="reference" value="#{realmController.selected.reference}" title="#{bundle.EditRealmTitle_reference}" />
+
+                        <p:outputLabel value="#{bundle.EditRealmLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{realmController.selected.name}" title="#{bundle.EditRealmTitle_name}" />
+
+                        <p:outputLabel value="#{bundle.EditRealmLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{realmController.selected.description}" title="#{bundle.EditRealmTitle_description}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{realmController.save}" value="#{bundle.Save}" update="realmEditDisplay,realmEditMessagePanel,:realmListForm:realmDatalist" oncomplete="if(!args.validationFailed) {realmEditDialog.hide();}"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="realmEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
