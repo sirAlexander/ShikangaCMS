@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -40,7 +41,7 @@ public class Template extends BaseEntity implements Serializable {
     )
     private Set<TemplateRegion> regions = new HashSet<TemplateRegion>();    
     
-    @OneToMany
+    @OneToMany( mappedBy="template", fetch= FetchType.LAZY )
     private Set<View> views = new HashSet<View>();
 
     

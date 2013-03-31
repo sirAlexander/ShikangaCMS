@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -31,6 +32,11 @@ public class View extends BaseEntity implements Serializable {
     private String name;
     @NotNull
     private String description;
+    
+    @NotNull
+    @ManyToOne( fetch= FetchType.LAZY )
+    @JoinColumn( name="template_id" )
+    private Template template;
     
     @ManyToOne   
     @JoinColumn(name= "parent_id")
@@ -64,6 +70,15 @@ public class View extends BaseEntity implements Serializable {
         this.description = description;
     }
 
+    public Template getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(Template template) {
+        this.template = template;
+    }
+    
+    
     public View getParentView() {
         return parentView;
     }
