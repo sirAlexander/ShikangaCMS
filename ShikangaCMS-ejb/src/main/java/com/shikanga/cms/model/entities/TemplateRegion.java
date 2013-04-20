@@ -5,6 +5,7 @@
 package com.shikanga.cms.model.entities;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -20,6 +21,7 @@ public class TemplateRegion implements Serializable {
     private static final long serialVersionUID = 1L;
         
     @NotEmpty
+    @Column( unique=true )
     private String reference;
     @NotEmpty
     private String name;

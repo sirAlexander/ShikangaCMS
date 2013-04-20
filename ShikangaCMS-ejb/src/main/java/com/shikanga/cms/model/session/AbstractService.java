@@ -5,6 +5,7 @@
 package com.shikanga.cms.model.session;
 
 import java.util.List;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 
 /**
@@ -12,13 +13,18 @@ import javax.persistence.EntityManager;
  * @author shikanga
  */
 public abstract class AbstractService<T> {
+    
+    protected abstract Logger getLog();
+    
+    protected abstract EntityManager getEntityManager();   
+    
+    
     private Class<T> entityClass;
 
     public AbstractService(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
-
-    protected abstract EntityManager getEntityManager();
+    
 
     public void create(T entity) {
         getEntityManager().persist(entity);

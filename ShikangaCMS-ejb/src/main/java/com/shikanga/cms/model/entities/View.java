@@ -7,6 +7,7 @@ package com.shikanga.cms.model.entities;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -27,6 +28,7 @@ public class View extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
         
     @NotEmpty
+    @Column( unique=true )
     private String reference;
     @NotEmpty
     private String name;

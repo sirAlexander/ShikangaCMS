@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="templateCreateDlg" widgetVar="templateCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateTemplateTitle}">
+
+            <h:form id="templateCreateForm">
+
+                <h:panelGroup id="templateCreateMessagePanel">
+                    <p:messages/>
+                </h:panelGroup>
+
+                <h:panelGroup id="templateCreateDisplay">
+                    <p:panelGrid columns="2" rendered="#{templateController.selected != null}">
+
+                        <p:outputLabel value="#{bundle.CreateTemplateLabel_reference}" for="reference" />
+                        <p:inputText id="reference" value="#{templateController.selected.reference}" title="#{bundle.CreateTemplateTitle_reference}" />
+
+                        <p:outputLabel value="#{bundle.CreateTemplateLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{templateController.selected.name}" title="#{bundle.CreateTemplateTitle_name}" />
+
+                        <p:outputLabel value="#{bundle.CreateTemplateLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{templateController.selected.description}" title="#{bundle.CreateTemplateTitle_description}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateTemplateLabel_content}" for="content" />
+                        <p:inputTextarea id="content" value="#{templateController.selected.content}" title="#{bundle.CreateTemplateTitle_dcontent}" />
+                        
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{templateController.saveNew}" value="#{bundle.Save}" update="templateCreateDisplay,templateCreateMessagePanel,:templateListForm:templateDatalist" oncomplete="if(!args.validationFailed){templateCreateDialog.hide();}"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="templateCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

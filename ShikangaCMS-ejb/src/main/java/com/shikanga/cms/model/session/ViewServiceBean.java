@@ -5,7 +5,9 @@
 package com.shikanga.cms.model.session;
 
 import com.shikanga.cms.model.entities.View;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -16,9 +18,19 @@ import javax.persistence.PersistenceContext;
 @Stateless(name="ViewService")
 public class ViewServiceBean extends AbstractService<View> {
     
-    @PersistenceContext(unitName = "ShikangaCMSPU")
+    @Inject
+    private Logger log;
+    
+    @Inject
     private EntityManager em;
 
+    
+    @Override
+    protected Logger getLog() {
+        return log;
+    }
+    
+    
     @Override
     protected EntityManager getEntityManager() {
         return em;

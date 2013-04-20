@@ -8,10 +8,12 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CollectionTable;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -28,11 +30,16 @@ public class Template extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
         
     @NotEmpty
+    @Column( unique=true )
     private String reference;
     @NotEmpty
+    @Column( unique=true )
     private String name;
     @NotNull
     private String description;
+    @Lob
+    private String content;
+    
     
     @ElementCollection
     @CollectionTable(
@@ -68,6 +75,16 @@ public class Template extends BaseEntity implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+    
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+        
 
     public Set<TemplateRegion> getRegions() {
         return regions;

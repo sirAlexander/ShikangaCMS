@@ -29,7 +29,7 @@
                         <p:inputText id="description" value="#{appController.selected.description}" title="#{bundle.CreateAppTitle_description}" />
                         
                         <p:outputLabel value="#{bundle.CreateAppLabel_realm}" for="realm" />
-                        <p:selectOneMenu id="realm" value="#{appController.selected.realm}" converter="#{realmConverter}" title="#{bundle.EditAppTitle_realm}" >
+                        <p:selectOneMenu id="realm" value="#{appController.selected.realm}" converter="#{realmConverter}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}" noSelectionOption="true" itemValue="#{null}"/>
                             <f:selectItems value="#{realmController.items}"
                                            var="realmItem"

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="templateEditDlg" widgetVar="templateEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditTemplateTitle}">
+
+            <h:form id="templateEditForm">
+
+                <h:panelGroup id="templateEditMessagePanel">
+                    <p:messages id="templateEditMessages"/>
+                </h:panelGroup>
+
+                <h:panelGroup id="templateEditDisplay">
+                    <p:panelGrid  columns="2" rendered="#{templateController.selected != null}">
+
+                        <p:outputLabel value="#{bundle.EditTemplateLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{templateController.selected.id}" />
+
+                        <p:outputLabel value="#{bundle.EditTemplateLabel_reference}" for="reference" />
+                        <p:inputText id="reference" value="#{templateController.selected.reference}" title="#{bundle.EditTemplateTitle_reference}" />
+
+                        <p:outputLabel value="#{bundle.EditTemplateLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{templateController.selected.name}" title="#{bundle.EditTemplateTitle_name}" />
+
+                        <p:outputLabel value="#{bundle.EditTemplateLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{templateController.selected.description}" title="#{bundle.EditTemplateTitle_description}" />
+                        
+                        <p:outputLabel value="#{bundle.EditTemplateLabel_content}" for="content" />
+                        <p:inputTextarea id="content" value="#{templateController.selected.content}" title="#{bundle.EditTemplateTitle_content}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{templateController.save}" value="#{bundle.Save}" update="templateEditDisplay,templateEditMessagePanel,:templateListForm:templateDatalist" oncomplete="if(!args.validationFailed) {templateEditDialog.hide();}"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="templateEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

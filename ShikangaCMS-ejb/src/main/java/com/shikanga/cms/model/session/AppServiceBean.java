@@ -5,7 +5,9 @@
 package com.shikanga.cms.model.session;
 
 import com.shikanga.cms.model.entities.App;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -16,9 +18,18 @@ import javax.persistence.PersistenceContext;
 @Stateless(name="AppService")
 public class AppServiceBean extends AbstractService<App> {
     
-    @PersistenceContext(unitName = "ShikangaCMSPU")
+    @Inject
+    private Logger log;
+    
+    @Inject
     private EntityManager em;
 
+    @Override
+    protected Logger getLog() {
+        return log;
+    }
+    
+    
     @Override
     protected EntityManager getEntityManager() {
         return em;

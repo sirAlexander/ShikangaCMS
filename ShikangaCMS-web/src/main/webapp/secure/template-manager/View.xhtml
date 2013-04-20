@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="templateViewDlg" widgetVar="templateViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewTemplateTitle}">
+
+            <h:form id="templateViewForm">
+
+                <h:panelGroup id="templateViewDisplay">
+                    <p:panelGrid columns="2" rendered="#{templateController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewTemplateLabel_id}"/>
+                        <h:outputText value="#{templateController.selected.id}" title="#{bundle.ViewTemplateTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewTemplateLabel_reference}"/>
+                        <h:outputText value="#{templateController.selected.reference}" title="#{bundle.ViewTemplateTitle_reference}"/>
+
+                        <h:outputText value="#{bundle.ViewTemplateLabel_name}"/>
+                        <h:outputText value="#{templateController.selected.name}" title="#{bundle.ViewTemplateTitle_name}"/>
+
+                        <h:outputText value="#{bundle.ViewTemplateLabel_description}"/>
+                        <h:outputText value="#{templateController.selected.description}" title="#{bundle.ViewTemplateTitle_description}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="templateViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
