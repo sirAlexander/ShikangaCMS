@@ -8,7 +8,8 @@
   <name>ShikangaCMS</name>
   <modules>
     <module>ShikangaCMS-ear</module>
+     <module>ShikangaCMS-ejb</module> 
     <module>ShikangaCMS-web</module>
-    <module>ShikangaCMS-ejb</module>
+    <module>ShikangaCMS-WebDAV-web</module>
   </modules>
 </project>
