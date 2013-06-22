@@ -34,6 +34,13 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+    <groupId>org.glassfish.extras</groupId>
+    <artifactId>glassfish-embedded-all</artifactId>
+    <version>3.1</version>
+    <scope>test</scope>
+</dependency>
+        
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>6.0</version>
@@ -61,6 +68,7 @@
                 <version>2.1.1</version>
                 <configuration>                    
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <includeEmptyDirs>true</includeEmptyDirs>
                 </configuration>
             </plugin>
             <plugin>
